@@ -16,7 +16,6 @@ public class LongestPalindrome {
 		String result = findLargestPalindrome("abcdcb");
 
 		if (result == null) {
-
 			System.out.println("No PalinDrome Found");
 		} else {
 

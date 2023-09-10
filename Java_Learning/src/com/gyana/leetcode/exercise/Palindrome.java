@@ -12,12 +12,13 @@ public class Palindrome {
             return false;
 
         int result = 0;
-        while (x > result) {
+        int temp = x;
+        while (temp != 0) {
             result = result * 10 + x % 10;
-            x = x / 10;
+            temp = x / 10;
         }
 
-        return result == x || x == result / 10;
+        return result == x;
 
     }
 
