@@ -25,4 +25,21 @@ public class BuySellStock {
 
         return mx_p;
     }
+
+    public int maxPrice3(int[] prices){
+        int buyPrice = prices[0];
+        int right = 1;
+        int maxProfit = 0;
+
+
+        while(right < prices.length) {
+            if(prices[right] > buyPrice){
+                maxProfit = Math.max(maxProfit, prices[right] - buyPrice);
+            } else {
+                buyPrice = prices[right];
+            }
+            right++;
+        }
+        return maxProfit;
+    }
 }

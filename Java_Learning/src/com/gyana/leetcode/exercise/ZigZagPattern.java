@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*This is too difficult question*/
-
 public class ZigZagPattern {
 
 	public static void main(String[] args) {
@@ -34,7 +33,6 @@ public class ZigZagPattern {
 		}
 
 		for (StringBuilder s1 : rows) {
-
 			System.out.println(s1.toString());
 		}
 

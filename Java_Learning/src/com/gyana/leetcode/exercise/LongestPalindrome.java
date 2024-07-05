@@ -2,6 +2,11 @@ package com.gyana.leetcode.exercise;
 
 /*Longest Palindrome*/
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /*
  * abccba
  * 
@@ -13,75 +18,47 @@ public class LongestPalindrome {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		String result = findLargestPalindrome("abcdcb");
-
-		if (result == null) {
-			System.out.println("No PalinDrome Found");
-		} else {
-
-			System.out.println("The PalinDrome is " + result);
-		}
+		int result = longestPalindrome("abcdcb");
+		System.out.println("length of palindrome is : " + result);
 
 	}
 
-	public static String findLargestPalindrome(String string) {
+	/*
+		Using hash set
 
-		if (string.equals(new StringBuilder(string).reverse().toString())) {
+		Traverse the String.
+		  Find out if the char is present in the set, if yes, then that means the char is present two times and
+		  can be included in the palindrome string. So we increase the length by 2 and remove the entry from the Set.
 
-			return string;
-		}
+		  If not, just add it to the set.
 
-		String intermediateX = null;
-		String intermediateX2 = null;
+		  At the end, verify if any single occurrences of any char present in the set. If yes, increase the length by 1
+		  as palindrome string can have a single char in the middle.
 
-		boolean findPalindrome = false;
+	 */
+	static Integer longestPalindrome(String s) {
+		if (s.length() == 1)
+			return 1;
+		Set<Character> charSet = new HashSet<>();
 
-		for (int i = string.length() - 1; i >= 2; i--) {
+		int length = 0;
 
-			intermediateX = string.substring(0, i);
-			System.out.println("intermediateX is " + intermediateX);
-
-			if (intermediateX.equals(new StringBuilder(intermediateX).reverse().toString())) {
-				System.out.println("Inside first if" + intermediateX);
-				findPalindrome = true;
-				break;
-			}
-
-			System.out.println(intermediateX);
-
-		}
-
-		for (int i = 1; i < string.length() - 1; i++) {
-
-			intermediateX2 = string.substring(i, string.length());
-			System.out.println("intermediateX2 is " + intermediateX2);
-			System.out.println("Reverse X2 is" + new StringBuilder(intermediateX2).reverse().toString());
-
-			if (intermediateX2.equals(new StringBuilder(intermediateX2).reverse().toString())) {
-
-				System.out.println("Inside intermediateX2 is " + intermediateX2);
-				findPalindrome = true;
-				break;
-			}
-
-		}
-
-		System.out.println(findPalindrome);
-
-		if (findPalindrome) {
-
-			if (intermediateX.length() > intermediateX2.length()) {
-
-				return intermediateX;
+		for(char ch : s.toCharArray()) {
+			if (charSet.contains(ch)){
+				length += 2;
 			} else {
-
-				return intermediateX2;
+				charSet.add(ch);
 			}
-
-		} else {
-			return null;
 		}
 
+		//Check if any single occurance chars are present. i.e. if the set is still no empty
+
+		if (!charSet.isEmpty()) {
+			length += 1;
+		}
+
+
+		return length;
 	}
 
 }

@@ -10,7 +10,6 @@ public class MergeTwoSortedLinkedLists {
         int val;
         ListNode next;
 
-
         ListNode() {
         }
 

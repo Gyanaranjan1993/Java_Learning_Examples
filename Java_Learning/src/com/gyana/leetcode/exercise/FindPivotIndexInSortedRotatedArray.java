@@ -32,6 +32,23 @@ public class FindPivotIndexInSortedRotatedArray {
         } else{
             return findPivot(arr, left, mid-1);
         }
+    }
 
+    private int findPivot(int[] arr){
+        int left = 0;
+        int right = arr.length - 1;
+        int pivotIndex = -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            // If mid is larger than the last element, then we know that the pivot must be in the right part.
+            // Else if mid is less than the last element then we can discard the right part of the array;
+            if (arr[mid] > arr[right]) {
+                left = mid + 1;
+                pivotIndex = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return pivotIndex;
     }
 }
